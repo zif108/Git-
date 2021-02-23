@@ -4,12 +4,14 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from UI import Ui_MainWindow
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        # uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.pushButton.clicked.connect(self.paint)
 
@@ -29,7 +31,10 @@ class MyWidget(QMainWindow):
         y = random.randint(10, 300)
         w = random.randint(10, 85)
         h = random.randint(10, 85)
-        qp.setBrush(QColor(255, 255, 0))
+        r = random.randint(1, 255)
+        g = random.randint(1, 255)
+        b = random.randint(1, 255)
+        qp.setBrush(QColor(r, g, b))
         qp.drawEllipse(x, y, w, h)
 
 
